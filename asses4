@@ -14,8 +14,8 @@ def get_covid_data(country="all"):
         A dictionary containing the COVID-19 statistics for the specified country.
     """
 
-    api_key = "6751c2bb26mshb9b8168e476ba09p152cc9jsn4cd0cf1e9742" # Replace with your actual API key
-    url = 'https://covid-19-data.p.rapidapi.com/country/code?
+    api_key = '6751c2bb26mshb9b8168e476ba09p152cc9jsn4cd0cf1e9742' # Replace with your actual API key
+    url = 'https://covid-193.p.rapidapi.com/countries' \
 
     if country.lower() == "all":
         url += "/all"
