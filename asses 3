@@ -1,0 +1,78 @@
+import datetime
+
+class Product:
+    def __init__(self, sku, name, quantity, price, reorder_level, supplier):
+        self.sku = sku
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+        self.reorder_level = reorder_level
+        self.supplier = supplier
+
+    def __str__(self):
+        return f"SKU: {self.sku}, Name: {self.name}, Quantity: {self.quantity}"
+
+class Inventory:
+    def __init__(self):
+        self.products = {}
+
+    def add_product(self, product_data):
+        sku = product_data["sku"]
+        if sku not in self.products:
+            self.products[sku] = Product(**product_data)
+            print(f"Product {product_data['name']} added successfully.")
+        else:
+            print(f"Product with SKU {sku} already exists.")
+
+    def remove_product(self, sku):
+        if sku in self.products:
+            del self.products[sku]
+            print(f"Product with SKU {sku} removed.")
+        else:
+            print(f"Product with SKU {sku} not found.")
+
+    def update_quantity(self, sku, change):
+        if sku in self.products:
+            self.products[sku].quantity += change
+            print(f"Quantity of {self.products[sku].name} updated.")
+        else:
+            print(f"Product with SKU {sku} not found.")
+
+    def get_product_details(self, sku):
+        if sku in self.products:
+            return self.products[sku]
+        else:
+            return None
+
+    def check_stock(self, sku):
+        if sku in self.products:
+            return self.products[sku].quantity > 0
+        else:
+            return False
+
+    def generate_report(self):
+        print("\n----- Inventory Report -----")
+        print(f"Date: {datetime.date.today()}")
+        for sku, product in self.products.items():
+            print(product)
+        print("----- End of Report -----")
+
+    def reorder_items(self):
+        print("\n----- Items to Reorder -----")
+        for sku, product in self.products.items():
+            if product.quantity <= product.reorder_level:
+                print(f"SKU: {product.sku}, Name: {product.name}, Quantity: {product.quantity}")
+        print("----- End of Reorder List -----")
+
+
+# Example Usage
+my_inventory = Inventory()
+
+my_inventory.add_product({"sku": "SKU123", "name": "Laptop", "quantity": 50, "price": 1200.00, "reorder_level": 10, "supplier": "Acme Tech"})
+my_inventory.add_product({"sku": "SKU456", "name": "Mouse", "quantity": 100, "price": 25.00, "reorder_level": 20, "supplier": "Gadget World"})
+
+my_inventory.update_quantity("SKU123", -10)  # Sell 10 laptops
+my_inventory.update_quantity("SKU456", 20)  # Receive 20 more mice
+
+my_inventory.generate_report()
+my_inventory.reorder_items() 
