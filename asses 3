@@ -29,7 +29,7 @@ def get_travel_time(origin, destination, api_key):
 # Example usage:
 origin = "New York, NY"
 destination = "Los Angeles, CA"
-api_key = "YOUR_GOOGLE_MAPS_API_KEY"
+api_key = "AIzaSyD_jA7ABwQSizxPzXyQe0ibuhPBmRQX_nA"
 travel_time = get_travel_time(origin, destination, api_key)
 print(f"Estimated travel time: {travel_time} seconds")
 
