@@ -15,7 +15,7 @@ def get_covid_data(country="all"):
     """
 
     api_key = 6751c2bb26mshb9b8168e476ba09p152cc9jsn4cd0cf1e9742' # Replace with your actual API key
-    url = "https://disease.sh/v3/covid-19"
+    url = 'https://covid-19-data.p.rapidapi.com/country/code?
 
     if country.lower() == "all":
         url += "/all"
